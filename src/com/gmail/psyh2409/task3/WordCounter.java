@@ -41,13 +41,12 @@ public class WordCounter {
 
     public String fileReader() {
         StringBuilder sb = new StringBuilder("");
-        int symbol;
         if (file.exists()) {
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-                symbol = br.read();
-                while (symbol != -1) {
-                    sb.append((char) symbol);
-                    symbol = br.read();
+                String s = "";
+                while (br.ready()) {
+                    s = br.readLine();
+                    sb.append(s);
                 }
                 return sb.toString();
             } catch (IOException e) {

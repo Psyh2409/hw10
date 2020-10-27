@@ -64,13 +64,12 @@ public class Translator implements Serializable {
 
     public String textReader() {
         StringBuilder sb = new StringBuilder("");
-        int symbol;
         if (fileEngIn.exists()) {
             try (BufferedReader br = new BufferedReader(new FileReader(fileEngIn))) {
-                symbol = br.read();
-                while (symbol != -1) {
-                    sb.append((char) symbol);
-                    symbol = br.read();
+                String s = "";
+                while (br.ready()) {
+                    s = br.readLine();
+                    sb.append(s);
                 }
                 return sb.toString();
             } catch (IOException e) {
@@ -114,9 +113,7 @@ public class Translator implements Serializable {
         String[] other;
         String[] words;
         StringBuilder builder = new StringBuilder("");
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new InputStreamReader(System.in));
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))){
             if (eng != null) {
                 other = eng.split("\\w+");
                 words = eng.split("\\W+");
@@ -135,12 +132,6 @@ public class Translator implements Serializable {
             }
         } catch (IOException ioe) {
             ioe.printStackTrace();
-        } finally {
-            try {
-                br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
         return builder.toString();
     }
