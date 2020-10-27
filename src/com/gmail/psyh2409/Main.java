@@ -1,11 +1,14 @@
 package com.gmail.psyh2409;
 
+import com.gmail.psyh2409.ascii.ASCIIart;
 import com.gmail.psyh2409.polyglot.Translator;
 import com.gmail.psyh2409.task3.WordCounter;
 
+import java.util.*;
+
 
 public class Main {
-
+    private static Map<Character, List<String>> map = new HashMap<>();
     public static void main(String[] args) {
 
 //        Tasks 1 and 2
@@ -27,6 +30,9 @@ public class Main {
         new WordCounter("text.txt");
 
         System.out.println("________________________________________________________");
-
+        System.out.println();
+//        ASCII-art
+        ASCIIart ascii = new ASCIIart();
+        ascii.printASCII("I love my wife");
     }
 }
