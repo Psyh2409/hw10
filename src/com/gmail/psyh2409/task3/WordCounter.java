@@ -69,6 +69,7 @@ public class WordCounter {
         if (strings == null) { return; }
         stat = new HashMap<>();
         for (String s: strings) {
+            if (s.equals("")) continue;
             if (stat.containsKey(s)){
                 stat.put(s, stat.get(s)+1);
             }else {
